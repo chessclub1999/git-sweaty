@@ -81,6 +81,21 @@ if [[ "${1:-}" == "api" && "${2:-}" == "repos/aspain/git-sweaty" ]]; then
   echo "${FAKE_GH_DEFAULT_BRANCH:-main}"
   exit 0
 fi
+if [[ "${1:-}" == "api" && "${3:-}" == "--jq" && "${4:-}" == ".permissions.push" ]]; then
+  repo_path="${2#repos/}"
+  denied="${FAKE_GH_PUSH_DENY_FOR:-}"
+  if [[ -n "${denied}" ]]; then
+    IFS=',' read -r -a denied_list <<< "${denied}"
+    for candidate in "${denied_list[@]}"; do
+      if [[ "${repo_path}" == "${candidate}" ]]; then
+        echo "false"
+        exit 0
+      fi
+    done
+  fi
+  echo "${FAKE_GH_PUSH_PERM:-true}"
+  exit 0
+fi
 if [[ "${1:-}" == "repo" && "${2:-}" == "fork" ]]; then
   exit 0
 fi
@@ -727,6 +742,46 @@ exit 0
             with open(py_log, "r", encoding="utf-8") as f:
                 py_calls = f.read()
             self.assertIn("/scripts/setup_auth.py --repo tester/existing-online", py_calls)
+
+    def test_bootstrap_online_mode_without_fork_requires_writable_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            fake_bin, _, py_log = self._make_fake_bin(tmpdir)
+            run_dir = os.path.join(tmpdir, "runner")
+            os.makedirs(run_dir, exist_ok=True)
+
+            gh_log = os.path.join(tmpdir, "gh.log")
+            env = os.environ.copy()
+            env["PATH"] = f"{fake_bin}:{env['PATH']}"
+            env["FAKE_GIT_LOG"] = os.path.join(tmpdir, "git.log")
+            env["FAKE_GH_LOG"] = gh_log
+            env["FAKE_CURL_LOG"] = os.path.join(tmpdir, "curl.log")
+            env["FAKE_TAR_LOG"] = os.path.join(tmpdir, "tar.log")
+            env["FAKE_PY_LOG"] = py_log
+            env["FAKE_REPO_VIEW_FAIL_FOR"] = "tester/git-sweaty"
+            env["FAKE_GH_PUSH_DENY_FOR"] = "tester/read-only"
+
+            proc = subprocess.run(
+                ["bash", BOOTSTRAP_PATH],
+                input="2\nn\ntester/read-only\ntester/writable\n",
+                text=True,
+                capture_output=True,
+                cwd=run_dir,
+                env=env,
+                check=False,
+            )
+            self.assertEqual(proc.returncode, 0, msg=f"{proc.stdout}\n{proc.stderr}")
+
+            output = f"{proc.stdout}\n{proc.stderr}"
+            self.assertIn("does not have write access", output)
+
+            with open(gh_log, "r", encoding="utf-8") as f:
+                gh_calls = f.read()
+            self.assertIn("api repos/tester/read-only --jq .permissions.push", gh_calls)
+            self.assertIn("api repos/tester/writable --jq .permissions.push", gh_calls)
+
+            with open(py_log, "r", encoding="utf-8") as f:
+                py_calls = f.read()
+            self.assertIn("/scripts/setup_auth.py --repo tester/writable", py_calls)
 
 
 if __name__ == "__main__":

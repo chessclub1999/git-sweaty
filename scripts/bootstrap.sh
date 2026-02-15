@@ -174,6 +174,14 @@ prompt_repo_slug() {
       continue
     fi
 
+    local can_push
+    can_push="$(gh api "repos/${answer}" --jq '.permissions.push' 2>/dev/null || true)"
+    if [[ "$can_push" != "true" ]]; then
+      warn "Current gh account does not have write access to: $answer"
+      warn "Fork is required unless you choose a writable target repository."
+      continue
+    fi
+
     printf '%s\n' "$answer"
     return 0
   done
@@ -546,10 +554,11 @@ run_online_setup() {
   login="$(gh api user --jq .login 2>/dev/null || true)"
   [[ -n "$login" ]] || fail "Unable to resolve GitHub username from current gh auth session."
 
-  if prompt_yes_no "Fork the repo to your GitHub account first?" "Y"; then
+  if prompt_yes_no "Create/use a fork in your GitHub account first? (recommended unless you already have a writable target repo)" "Y"; then
     ensure_fork_exists "$upstream_repo"
     target_repo="$BOOTSTRAP_SELECTED_FORK_REPO"
   else
+    info "Using non-fork mode: target repository must be writable by the current gh account."
     target_repo="$(prompt_repo_slug "$(detect_existing_fork_repo "$upstream_repo" "$login" || true)")"
   fi
 
@@ -676,7 +685,7 @@ main() {
     return 0
   fi
 
-  if prompt_yes_no "Fork the repo to your GitHub account first?" "Y"; then
+  if prompt_yes_no "Fork the repo to your GitHub account first? (recommended unless you already have write access to another target repo)" "Y"; then
     fork_and_clone "$upstream_repo" "$repo_dir"
   else
     if ! prompt_yes_no "Clone upstream directly (without forking)?" "Y"; then
