@@ -21863,10 +21863,11 @@
       }
     }
   },
-  "generated_at": "2026-02-15T00:26:42.975628+00:00",
+  "generated_at": "2026-02-15T00:34:46.839986+00:00",
   "other_bucket": "OtherSports",
   "repo": "aspain/git-sweaty",
   "source": "strava",
+  "strava_profile_url": "https://www.strava.com/athletes/31002690",
   "type_meta": {
     "Hike": {
       "accent": "#d6ff6b",
