@@ -21879,7 +21879,7 @@
       }
     }
   },
-  "generated_at": "2026-02-15T18:38:31.353690+00:00",
+  "generated_at": "2026-02-15T19:45:42.780546+00:00",
   "other_bucket": "OtherSports",
   "repo": "aspain/git-sweaty",
   "source": "strava",
@@ -21926,6 +21926,7 @@
     "distance": "mi",
     "elevation": "ft"
   },
+  "week_start": "sunday",
   "years": [
     2018,
     2019,
