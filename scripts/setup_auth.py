@@ -65,6 +65,8 @@ UNIT_PRESETS = {
     "us": ("mi", "ft"),
     "metric": ("km", "m"),
 }
+DEFAULT_WEEK_START = "sunday"
+WEEK_START_CHOICES = {"sunday", "monday"}
 REPO_URL_RE = re.compile(
     r"^https?://github\.com/(?P<owner>[^/]+)/(?P<repo>[^/]+)/?$",
     re.IGNORECASE,
@@ -538,6 +540,31 @@ def _existing_dashboard_source(repo: str) -> Optional[str]:
     if normalized in {"strava", "garmin"}:
         return normalized
     return None
+
+
+def _normalize_week_start(value: Optional[str]) -> str:
+    normalized = str(value or "").strip().lower()
+    aliases = {
+        "sun": "sunday",
+        "sunday": "sunday",
+        "mon": "monday",
+        "monday": "monday",
+    }
+    resolved = aliases.get(normalized)
+    if resolved:
+        return resolved
+    allowed = ", ".join(sorted(WEEK_START_CHOICES))
+    raise ValueError(f"Unsupported week start '{value}'. Expected one of: {allowed}.")
+
+
+def _existing_dashboard_week_start(repo: str) -> Optional[str]:
+    value = _get_variable("DASHBOARD_WEEK_START", repo)
+    if value is None:
+        return None
+    try:
+        return _normalize_week_start(value)
+    except ValueError:
+        return None
 
 
 def _prompt_full_backfill_choice(source: str) -> bool:
@@ -1155,6 +1182,33 @@ def _prompt_units() -> Tuple[str, str]:
     return UNIT_PRESETS[system]
 
 
+def _prompt_week_start(default_week_start: str) -> str:
+    default_normalized = _normalize_week_start(default_week_start)
+    default_choice = "1" if default_normalized == "sunday" else "2"
+    print("\nChoose heatmap week start (top row in yearly cards):")
+    print("  1) Sunday")
+    print("  2) Monday")
+    selected = _prompt_choice(
+        f"Selection (enter 1 or 2) (default: {default_choice}): ",
+        {"1": "sunday", "2": "monday"},
+        default=default_choice,
+        invalid_message="Please enter '1' or '2'.",
+    )
+    return selected
+
+
+def _resolve_week_start(args: argparse.Namespace, interactive: bool, repo: str) -> str:
+    explicit = getattr(args, "week_start", None)
+    if explicit:
+        return _normalize_week_start(explicit)
+
+    existing = _existing_dashboard_week_start(repo)
+    if interactive:
+        return _prompt_week_start(existing or DEFAULT_WEEK_START)
+
+    return existing or DEFAULT_WEEK_START
+
+
 def _resolve_garmin_auth_values(args: argparse.Namespace, interactive: bool) -> Tuple[str, str, str]:
     token_store_b64 = (args.garmin_token_store_b64 or "").strip()
     email = (args.garmin_email or "").strip()
@@ -1594,6 +1648,12 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Units preset for dashboard metrics.",
     )
+    parser.add_argument(
+        "--week-start",
+        choices=["sunday", "monday"],
+        default=None,
+        help="Week start day for yearly heatmap y-axis labels.",
+    )
     parser.add_argument("--port", type=int, default=DEFAULT_PORT, help="Local callback port.")
     parser.add_argument(
         "--timeout",
@@ -1679,6 +1739,7 @@ def main() -> int:
         full_backfill = _prompt_full_backfill_choice(source)
 
     distance_unit, elevation_unit = _resolve_units(args, interactive)
+    week_start = _resolve_week_start(args, interactive, repo)
 
     print("\nUpdating repository secrets via gh...")
     configured_secret_names: list[str] = []
@@ -1777,6 +1838,7 @@ def main() -> int:
         ("DASHBOARD_REPO", repo),
         ("DASHBOARD_DISTANCE_UNIT", distance_unit),
         ("DASHBOARD_ELEVATION_UNIT", elevation_unit),
+        ("DASHBOARD_WEEK_START", week_start),
     ]
     if source == "strava":
         variable_pairs.append(("DASHBOARD_STRAVA_PROFILE_URL", strava_profile_url))
@@ -1789,6 +1851,14 @@ def main() -> int:
         except RuntimeError as exc:
             variable_errors.append(str(exc))
 
+    variable_summary = (
+        f"DASHBOARD_SOURCE={source}, DASHBOARD_REPO={repo}, "
+        f"DASHBOARD_DISTANCE_UNIT={distance_unit}, DASHBOARD_ELEVATION_UNIT={elevation_unit}, "
+        f"DASHBOARD_WEEK_START={week_start}"
+    )
+    if source == "strava" and strava_profile_url:
+        variable_summary = f"{variable_summary}, DASHBOARD_STRAVA_PROFILE_URL={strava_profile_url}"
+
     if variable_errors:
         _add_step(
             steps,
@@ -1796,37 +1866,15 @@ def main() -> int:
             status=STATUS_MANUAL_REQUIRED,
             detail=f"Could not store one or more dashboard variables automatically: {variable_errors[0]}",
             manual_help=(
-                f"Open {variables_settings_url} and set DASHBOARD_SOURCE={source}, "
-                f"DASHBOARD_REPO={repo}, "
-                f"DASHBOARD_DISTANCE_UNIT={distance_unit} "
-                f"and DASHBOARD_ELEVATION_UNIT={elevation_unit}"
-                + (
-                    (
-                        ", DASHBOARD_STRAVA_PROFILE_URL="
-                        f"{strava_profile_url}"
-                    )
-                    if source == "strava" and strava_profile_url
-                    else "."
-                )
-                + ("." if source == "strava" and strava_profile_url else "")
+                f"Open {variables_settings_url} and set {variable_summary}."
             ),
         )
     else:
-        profile_suffix = (
-            f", DASHBOARD_STRAVA_PROFILE_URL={strava_profile_url}"
-            if source == "strava" and strava_profile_url
-            else ""
-        )
         _add_step(
             steps,
             name="Store dashboard variables",
             status=STATUS_OK,
-            detail=(
-                "Saved DASHBOARD_SOURCE="
-                f"{source}, DASHBOARD_REPO={repo}, DASHBOARD_DISTANCE_UNIT={distance_unit}, "
-                f"DASHBOARD_ELEVATION_UNIT={elevation_unit}"
-                f"{profile_suffix}."
-            ),
+            detail=f"Saved {variable_summary}.",
         )
     print("\nCredentials configured.")
     if athlete_name:
@@ -1835,17 +1883,7 @@ def main() -> int:
     if configured_secret_names:
         print(f"Secrets set: {', '.join(configured_secret_names)}")
     if not variable_errors:
-        profile_suffix = (
-            f", DASHBOARD_STRAVA_PROFILE_URL={strava_profile_url}"
-            if source == "strava" and strava_profile_url
-            else ""
-        )
-        print(
-            "Variables set: "
-            f"DASHBOARD_SOURCE={source}, DASHBOARD_REPO={repo}, DASHBOARD_DISTANCE_UNIT={distance_unit}, "
-            f"DASHBOARD_ELEVATION_UNIT={elevation_unit}"
-            f"{profile_suffix}"
-        )
+        print(f"Variables set: {variable_summary}")
 
     if args.no_auto_github:
         _add_step(

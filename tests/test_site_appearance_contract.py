@@ -57,7 +57,9 @@ class SiteAppearanceContractTests(unittest.TestCase):
             "typeClearButton",
             "yearClearButton",
             "resetAllButton",
+            "footerHostedPrefix",
             "footerHostedLink",
+            "footerPoweredLink",
         ]
         for element_id in expected_ids:
             self.assertRegex(self.html, rf'id="{re.escape(element_id)}"')

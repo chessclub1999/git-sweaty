@@ -5,6 +5,7 @@ const TYPE_ACCENT_OVERRIDES = {
 };
 const FALLBACK_VAPORWAVE = ["#f15bb5", "#fee440", "#00bbf9", "#00f5d4", "#9b5de5", "#fb5607", "#ffbe0b", "#72efdd"];
 const STAT_PLACEHOLDER = "- - -";
+const CREATOR_REPO_SLUG = "aspain/git-sweaty";
 const TYPE_LABEL_OVERRIDES = {
   HighIntensityIntervalTraining: "HITT",
   Workout: "Other Workout",
@@ -44,6 +45,7 @@ const headerMeta = document.getElementById("headerMeta");
 const headerLinks = document.querySelector(".header-links");
 const repoLink = document.querySelector(".repo-link");
 const stravaProfileLink = document.querySelector(".strava-profile-link");
+const footerHostedPrefix = document.getElementById("footerHostedPrefix");
 const footerHostedLink = document.getElementById("footerHostedLink");
 const dashboardTitle = document.getElementById("dashboardTitle");
 const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
@@ -193,6 +195,16 @@ function resolveGitHubRepo(loc, fallbackRepo) {
   return inferGitHubRepoFromLocation(loc) || parseGitHubRepo(fallbackRepo);
 }
 
+function normalizeRepoSlug(value) {
+  const parsed = parseGitHubRepo(value);
+  if (!parsed) return "";
+  return `${parsed.owner}/${parsed.repo}`.toLowerCase();
+}
+
+function shouldHideHostedFooter(repoCandidate) {
+  return normalizeRepoSlug(repoCandidate) === CREATOR_REPO_SLUG;
+}
+
 function isGitHubHostedLocation(loc) {
   const host = String(loc?.hostname || "").toLowerCase();
   return Boolean(host) && (host === "github.com" || host.endsWith(".github.io"));
@@ -269,17 +281,24 @@ function syncRepoLink(fallbackRepo) {
 
 function syncFooterHostedLink(fallbackRepo) {
   if (!footerHostedLink) return;
+  const footerFallbackRepo = fallbackRepo
+    || repoLink?.getAttribute("href")
+    || repoLink?.textContent
+    || footerHostedLink.getAttribute("href")
+    || footerHostedLink.textContent;
   const resolved = resolveFooterHostedLink(
     window.location,
-    fallbackRepo
-      || repoLink?.getAttribute("href")
-      || repoLink?.textContent
-      || footerHostedLink.getAttribute("href")
-      || footerHostedLink.textContent,
+    footerFallbackRepo,
   );
-  if (!resolved) return;
-  footerHostedLink.href = resolved.href;
-  footerHostedLink.textContent = resolved.text;
+  if (resolved) {
+    footerHostedLink.href = resolved.href;
+    footerHostedLink.textContent = resolved.text;
+  }
+  if (footerHostedPrefix) {
+    footerHostedPrefix.hidden = shouldHideHostedFooter(
+      resolved?.text || resolved?.href || footerFallbackRepo,
+    );
+  }
 }
 
 function syncDesktopHeaderLinkPlacement() {
