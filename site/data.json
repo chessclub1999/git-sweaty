@@ -9295,6 +9295,13 @@
       "subtype": "virtual_ride",
       "type": "VirtualRide",
       "year": 2026
+    },
+    {
+      "date": "2026-02-19",
+      "hour": 11,
+      "subtype": "strength_training",
+      "type": "WeightTraining",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -20947,11 +20954,20 @@
           "distance": 0.0,
           "elevation_gain": 0.0,
           "moving_time": 552.7979736328125
+        },
+        "2026-02-19": {
+          "activity_ids": [
+            "21915834076"
+          ],
+          "count": 1,
+          "distance": 0.0,
+          "elevation_gain": 0.0,
+          "moving_time": 586.9840087890625
         }
       }
     }
   },
-  "generated_at": "2026-02-18T15:51:39.568818+00:00",
+  "generated_at": "2026-02-19T15:47:22.624719+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
