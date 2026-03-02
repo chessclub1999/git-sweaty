@@ -9407,6 +9407,27 @@
       "subtype": "running",
       "type": "Run",
       "year": 2026
+    },
+    {
+      "date": "2026-03-01",
+      "hour": 16,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-02",
+      "hour": 6,
+      "subtype": "virtual_ride",
+      "type": "VirtualRide",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-02",
+      "hour": 11,
+      "subtype": "strength_training",
+      "type": "WeightTraining",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -20589,6 +20610,15 @@
           "distance": 6467.10986328125,
           "elevation_gain": 43.0,
           "moving_time": 1506.0
+        },
+        "2026-03-01": {
+          "activity_ids": [
+            "22027531128"
+          ],
+          "count": 1,
+          "distance": 8894.2001953125,
+          "elevation_gain": 53.0,
+          "moving_time": 1912.0
         }
       },
       "Run": {
@@ -21073,6 +21103,15 @@
           "distance": 44156.0,
           "elevation_gain": 265.0,
           "moving_time": 5234.0
+        },
+        "2026-03-02": {
+          "activity_ids": [
+            "22031863589"
+          ],
+          "count": 1,
+          "distance": 14080.740234375,
+          "elevation_gain": 382.0,
+          "moving_time": 2500.0
         }
       },
       "Walk": {
@@ -21203,11 +21242,20 @@
           "distance": 0.0,
           "elevation_gain": 0.0,
           "moving_time": 651.8270263671875
+        },
+        "2026-03-02": {
+          "activity_ids": [
+            "22033594318"
+          ],
+          "count": 1,
+          "distance": 0.0,
+          "elevation_gain": 0.0,
+          "moving_time": 667.1389770507812
         }
       }
     }
   },
-  "generated_at": "2026-03-01T15:22:33.261056+00:00",
+  "generated_at": "2026-03-02T15:40:40.951933+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
