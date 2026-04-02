@@ -9561,6 +9561,76 @@
       "subtype": "running",
       "type": "Run",
       "year": 2026
+    },
+    {
+      "date": "2026-03-27",
+      "hour": 6,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-27",
+      "hour": 17,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-28",
+      "hour": 8,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-29",
+      "hour": 9,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-29",
+      "hour": 16,
+      "subtype": "hiking",
+      "type": "Hike",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-30",
+      "hour": 8,
+      "subtype": "trail_running",
+      "type": "TrailRun",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-31",
+      "hour": 9,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-03-31",
+      "hour": 10,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-01",
+      "hour": 9,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-01",
+      "hour": 15,
+      "subtype": "hiking",
+      "type": "Hike",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -20705,6 +20775,24 @@
           "distance": 4399.77978515625,
           "elevation_gain": 86.0,
           "moving_time": 3002.0
+        },
+        "2026-03-29": {
+          "activity_ids": [
+            "22340136844"
+          ],
+          "count": 1,
+          "distance": 2178.090087890625,
+          "elevation_gain": 27.0,
+          "moving_time": 1496.0
+        },
+        "2026-04-01": {
+          "activity_ids": [
+            "22372223822"
+          ],
+          "count": 1,
+          "distance": 3204.320068359375,
+          "elevation_gain": 61.0,
+          "moving_time": 2595.0
         }
       },
       "Ride": {
@@ -20788,6 +20876,24 @@
           "distance": 7827.259765625,
           "elevation_gain": 62.0,
           "moving_time": 1959.0
+        },
+        "2026-03-28": {
+          "activity_ids": [
+            "22324168403"
+          ],
+          "count": 1,
+          "distance": 48465.2109375,
+          "elevation_gain": 302.0,
+          "moving_time": 6171.523010253906
+        },
+        "2026-03-31": {
+          "activity_ids": [
+            "22357003730"
+          ],
+          "count": 1,
+          "distance": 18265.48046875,
+          "elevation_gain": 132.0,
+          "moving_time": 2211.3389892578125
         }
       },
       "Run": {
@@ -21133,6 +21239,43 @@
           "distance": 6757.02978515625,
           "elevation_gain": 30.0,
           "moving_time": 2424.6360092163086
+        },
+        "2026-03-27": {
+          "activity_ids": [
+            "22312715776",
+            "22318458967"
+          ],
+          "count": 2,
+          "distance": 7028.0703125,
+          "elevation_gain": 39.0,
+          "moving_time": 2144.404998779297
+        },
+        "2026-03-29": {
+          "activity_ids": [
+            "22334559528"
+          ],
+          "count": 1,
+          "distance": 10465.48046875,
+          "elevation_gain": 55.0,
+          "moving_time": 3509.0879516601562
+        },
+        "2026-03-31": {
+          "activity_ids": [
+            "22357123267"
+          ],
+          "count": 1,
+          "distance": 3302.27001953125,
+          "elevation_gain": 38.0,
+          "moving_time": 917.9549865722656
+        },
+        "2026-04-01": {
+          "activity_ids": [
+            "22369121366"
+          ],
+          "count": 1,
+          "distance": 15019.1396484375,
+          "elevation_gain": 86.0,
+          "moving_time": 4626.359024047852
         }
       },
       "Swim": {
@@ -21153,6 +21296,17 @@
           "distance": 225.0,
           "elevation_gain": 0.0,
           "moving_time": 243.1840057373047
+        }
+      },
+      "TrailRun": {
+        "2026-03-30": {
+          "activity_ids": [
+            "22345552383"
+          ],
+          "count": 1,
+          "distance": 5836.47021484375,
+          "elevation_gain": 63.0,
+          "moving_time": 2243.178009033203
         }
       },
       "VirtualRide": {
@@ -21559,7 +21713,7 @@
       }
     }
   },
-  "generated_at": "2026-03-17T16:05:03.202011+00:00",
+  "generated_at": "2026-04-02T15:59:56.469156+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
