@@ -9638,6 +9638,118 @@
       "subtype": "running",
       "type": "Run",
       "year": 2026
+    },
+    {
+      "date": "2026-04-05",
+      "hour": 8,
+      "subtype": "virtual_ride",
+      "type": "VirtualRide",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-05",
+      "hour": 9,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-06",
+      "hour": 7,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-06",
+      "hour": 12,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-06",
+      "hour": 12,
+      "subtype": "lap_swimming",
+      "type": "Swim",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-06",
+      "hour": 13,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-07",
+      "hour": 6,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-07",
+      "hour": 10,
+      "subtype": "strength_training",
+      "type": "WeightTraining",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-08",
+      "hour": 6,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-08",
+      "hour": 16,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-09",
+      "hour": 7,
+      "subtype": "lap_swimming",
+      "type": "Swim",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-09",
+      "hour": 7,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-09",
+      "hour": 14,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-10",
+      "hour": 7,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-10",
+      "hour": 9,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-04-11",
+      "hour": 9,
+      "subtype": "lap_swimming",
+      "type": "Swim",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -20901,6 +21013,45 @@
           "distance": 18265.48046875,
           "elevation_gain": 132.0,
           "moving_time": 2211.3389892578125
+        },
+        "2026-04-06": {
+          "activity_ids": [
+            "22422744793",
+            "22425268242",
+            "22426109570"
+          ],
+          "count": 3,
+          "distance": 31811.279052734375,
+          "elevation_gain": 281.0,
+          "moving_time": 5284.704040527344
+        },
+        "2026-04-08": {
+          "activity_ids": [
+            "22453523877"
+          ],
+          "count": 1,
+          "distance": 5102.9501953125,
+          "elevation_gain": 48.0,
+          "moving_time": 1253.0
+        },
+        "2026-04-09": {
+          "activity_ids": [
+            "22462378414",
+            "22466702321"
+          ],
+          "count": 2,
+          "distance": 8388.56982421875,
+          "elevation_gain": 71.0,
+          "moving_time": 1744.0
+        },
+        "2026-04-10": {
+          "activity_ids": [
+            "22475476627"
+          ],
+          "count": 1,
+          "distance": 78183.8125,
+          "elevation_gain": 211.0,
+          "moving_time": 10869.301025390625
         }
       },
       "Run": {
@@ -21292,6 +21443,42 @@
           "distance": 8781.6396484375,
           "elevation_gain": 63.0,
           "moving_time": 2864.876007080078
+        },
+        "2026-04-05": {
+          "activity_ids": [
+            "22412564816"
+          ],
+          "count": 1,
+          "distance": 6094.669921875,
+          "elevation_gain": 129.0,
+          "moving_time": 1950.2869873046875
+        },
+        "2026-04-07": {
+          "activity_ids": [
+            "22434753322"
+          ],
+          "count": 1,
+          "distance": 3343.840087890625,
+          "elevation_gain": 15.0,
+          "moving_time": 1281.7770080566406
+        },
+        "2026-04-08": {
+          "activity_ids": [
+            "22454593830"
+          ],
+          "count": 1,
+          "distance": 9578.98046875,
+          "elevation_gain": 22.0,
+          "moving_time": 2944.968002319336
+        },
+        "2026-04-10": {
+          "activity_ids": [
+            "22473497006"
+          ],
+          "count": 1,
+          "distance": 6429.56982421875,
+          "elevation_gain": 35.0,
+          "moving_time": 2184.4900131225586
         }
       },
       "Swim": {
@@ -21312,6 +21499,33 @@
           "distance": 225.0,
           "elevation_gain": 0.0,
           "moving_time": 243.1840057373047
+        },
+        "2026-04-06": {
+          "activity_ids": [
+            "22425783427"
+          ],
+          "count": 1,
+          "distance": 1000.0,
+          "elevation_gain": 0.0,
+          "moving_time": 1225.4100341796875
+        },
+        "2026-04-09": {
+          "activity_ids": [
+            "22461425779"
+          ],
+          "count": 1,
+          "distance": 1050.0,
+          "elevation_gain": 0.0,
+          "moving_time": 1237.2950439453125
+        },
+        "2026-04-11": {
+          "activity_ids": [
+            "22484995058"
+          ],
+          "count": 1,
+          "distance": 1000.0,
+          "elevation_gain": 0.0,
+          "moving_time": 1182.7440185546875
         }
       },
       "TrailRun": {
@@ -21559,6 +21773,15 @@
           "distance": 2802.739990234375,
           "elevation_gain": 43.0,
           "moving_time": 672.0
+        },
+        "2026-04-05": {
+          "activity_ids": [
+            "22412246036"
+          ],
+          "count": 1,
+          "distance": 25347.720703125,
+          "elevation_gain": 256.0,
+          "moving_time": 3687.0
         }
       },
       "Walk": {
@@ -21725,11 +21948,20 @@
           "distance": 0.0,
           "elevation_gain": 0.0,
           "moving_time": 872.906005859375
+        },
+        "2026-04-07": {
+          "activity_ids": [
+            "22436687546"
+          ],
+          "count": 1,
+          "distance": 0.0,
+          "elevation_gain": 0.0,
+          "moving_time": 944.31298828125
         }
       }
     }
   },
-  "generated_at": "2026-04-03T15:37:56.637073+00:00",
+  "generated_at": "2026-04-11T15:32:34.871145+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
