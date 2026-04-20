@@ -9862,6 +9862,13 @@
       "subtype": "lap_swimming",
       "type": "Swim",
       "year": 2026
+    },
+    {
+      "date": "2026-04-20",
+      "hour": 16,
+      "subtype": "cycling",
+      "type": "Ride",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -21191,6 +21198,15 @@
           "distance": 49995.76953125,
           "elevation_gain": 237.0,
           "moving_time": 6817.583984375
+        },
+        "2026-04-20": {
+          "activity_ids": [
+            "22595049798"
+          ],
+          "count": 1,
+          "distance": 5005.16015625,
+          "elevation_gain": 59.0,
+          "moving_time": 1209.0
         }
       },
       "Run": {
@@ -22217,7 +22233,7 @@
       }
     }
   },
-  "generated_at": "2026-04-19T15:36:21.603262+00:00",
+  "generated_at": "2026-04-20T16:07:53.698348+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
