@@ -9953,6 +9953,20 @@
       "subtype": "running",
       "type": "Run",
       "year": 2026
+    },
+    {
+      "date": "2026-04-30",
+      "hour": 19,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-05-01",
+      "hour": 8,
+      "subtype": "lap_swimming",
+      "type": "Swim",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -21319,6 +21333,15 @@
           "distance": 8695.7197265625,
           "elevation_gain": 60.0,
           "moving_time": 1871.0
+        },
+        "2026-04-30": {
+          "activity_ids": [
+            "22716774179"
+          ],
+          "count": 1,
+          "distance": 23558.419921875,
+          "elevation_gain": 130.0,
+          "moving_time": 3230.9010009765625
         }
       },
       "Run": {
@@ -21919,6 +21942,15 @@
           "distance": 1334.0,
           "elevation_gain": 0.0,
           "moving_time": 1610.573974609375
+        },
+        "2026-05-01": {
+          "activity_ids": [
+            "22721171245"
+          ],
+          "count": 1,
+          "distance": 999.9000244140625,
+          "elevation_gain": 0.0,
+          "moving_time": 1111.7490234375
         }
       },
       "TrailRun": {
@@ -22417,7 +22449,7 @@
       }
     }
   },
-  "generated_at": "2026-04-30T16:17:51.853543+00:00",
+  "generated_at": "2026-05-01T15:56:32.100094+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
