@@ -17230,5 +17230,17 @@
     "start_date_local": "2026-05-10T09:19:42",
     "type": "Swim",
     "year": 2026
+  },
+  {
+    "date": "2026-05-11",
+    "distance": 62641.8984375,
+    "elevation_gain": 208.0,
+    "id": "22843762334",
+    "moving_time": 7038.072967529297,
+    "raw_activity_type": "road_biking",
+    "raw_type": "road_biking",
+    "start_date_local": "2026-05-11T14:40:36",
+    "type": "Ride",
+    "year": 2026
   }
 ]
