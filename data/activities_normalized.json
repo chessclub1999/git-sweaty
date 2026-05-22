@@ -17470,5 +17470,29 @@
     "start_date_local": "2026-05-21T11:48:41",
     "type": "Run",
     "year": 2026
+  },
+  {
+    "date": "2026-05-22",
+    "distance": 11386.83984375,
+    "elevation_gain": 78.0,
+    "id": "22967340328",
+    "moving_time": 1599.0,
+    "raw_activity_type": "virtual_ride",
+    "raw_type": "virtual_ride",
+    "start_date_local": "2026-05-22T06:30:42",
+    "type": "VirtualRide",
+    "year": 2026
+  },
+  {
+    "date": "2026-05-22",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "22969352358",
+    "moving_time": 1184.4520263671875,
+    "raw_activity_type": "strength_training",
+    "raw_type": "strength_training",
+    "start_date_local": "2026-05-22T11:08:02",
+    "type": "WeightTraining",
+    "year": 2026
   }
 ]
