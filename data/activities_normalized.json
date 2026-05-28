@@ -17578,5 +17578,41 @@
     "start_date_local": "2026-05-27T11:36:49",
     "type": "WeightTraining",
     "year": 2026
+  },
+  {
+    "date": "2026-05-28",
+    "distance": 6893.8701171875,
+    "elevation_gain": 62.0,
+    "id": "23044324419",
+    "moving_time": 1460.0,
+    "raw_activity_type": "cycling",
+    "raw_type": "cycling",
+    "start_date_local": "2026-05-28T06:48:08",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-05-28",
+    "distance": 30028.83984375,
+    "elevation_gain": 61.0,
+    "id": "23046628958",
+    "moving_time": 10447.037048339844,
+    "raw_activity_type": "running",
+    "raw_type": "running",
+    "start_date_local": "2026-05-28T16:21:28",
+    "type": "Run",
+    "year": 2026
+  },
+  {
+    "date": "2026-05-28",
+    "distance": 1087.4000244140625,
+    "elevation_gain": 30.0,
+    "id": "23047010937",
+    "moving_time": 759.0,
+    "raw_activity_type": "walking",
+    "raw_type": "walking",
+    "start_date_local": "2026-05-28T19:22:55",
+    "type": "Walk",
+    "year": 2026
   }
 ]
