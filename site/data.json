@@ -10310,6 +10310,27 @@
       "subtype": "lap_swimming",
       "type": "Swim",
       "year": 2026
+    },
+    {
+      "date": "2026-06-02",
+      "hour": 11,
+      "subtype": "road_biking",
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-06-02",
+      "hour": 14,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
+    },
+    {
+      "date": "2026-06-02",
+      "hour": 16,
+      "subtype": "running",
+      "type": "Run",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -21822,6 +21843,15 @@
           "distance": 6390.43994140625,
           "elevation_gain": 43.0,
           "moving_time": 1271.0
+        },
+        "2026-06-02": {
+          "activity_ids": [
+            "23102372863"
+          ],
+          "count": 1,
+          "distance": 61706.390625,
+          "elevation_gain": 244.0,
+          "moving_time": 7209.4110107421875
         }
       },
       "Run": {
@@ -22456,6 +22486,16 @@
           "distance": 5759.7001953125,
           "elevation_gain": 28.0,
           "moving_time": 2041.8970031738281
+        },
+        "2026-06-02": {
+          "activity_ids": [
+            "23102545610",
+            "23104640263"
+          ],
+          "count": 2,
+          "distance": 6122.6800537109375,
+          "elevation_gain": 24.0,
+          "moving_time": 2140.8280029296875
         }
       },
       "Swim": {
@@ -23217,7 +23257,7 @@
       }
     }
   },
-  "generated_at": "2026-06-01T19:54:41.070607+00:00",
+  "generated_at": "2026-06-02T18:38:42.382710+00:00",
   "other_bucket": "OtherSports",
   "repo": "chessclub1999/git-sweaty",
   "source": "garmin",
