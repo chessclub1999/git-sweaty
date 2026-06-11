@@ -17854,5 +17854,41 @@
     "start_date_local": "2026-06-10T07:07:45",
     "type": "Swim",
     "year": 2026
+  },
+  {
+    "date": "2026-06-10",
+    "distance": 8742.7197265625,
+    "elevation_gain": 68.0,
+    "id": "23209239378",
+    "moving_time": 1951.0,
+    "raw_activity_type": "cycling",
+    "raw_type": "cycling",
+    "start_date_local": "2026-06-10T07:38:22",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-11",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "23209433794",
+    "moving_time": 829.6420288085938,
+    "raw_activity_type": "strength_training",
+    "raw_type": "strength_training",
+    "start_date_local": "2026-06-11T11:21:52",
+    "type": "WeightTraining",
+    "year": 2026
+  },
+  {
+    "date": "2026-06-11",
+    "distance": 1000.0,
+    "elevation_gain": 0.0,
+    "id": "23212500728",
+    "moving_time": 1129.011962890625,
+    "raw_activity_type": "lap_swimming",
+    "raw_type": "lap_swimming",
+    "start_date_local": "2026-06-11T16:02:21",
+    "type": "Swim",
+    "year": 2026
   }
 ]
